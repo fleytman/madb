@@ -4,9 +4,14 @@ import inquirer
 import subprocess
 import sys
 
+
 def get_devices():
-    devices = subprocess.check_output(
-        "adb devices | egrep '\t(device|emulator)' | cut -f 1", shell=True, text=True).splitlines()
+    if sys.platform == "win32":
+        devices = subprocess.check_output(
+            """echo off && for /f "skip=1" %x in ('adb devices') do echo %x""", shell=True, text=True).splitlines()
+    else:
+        devices = subprocess.check_output("adb devices | egrep '\t(device|emulator)' | cut -f 1", shell=True,
+                                          text=True).splitlines()
     select_devices = [
         inquirer.Checkbox('devices',
                           message="Pls select devices?",
@@ -18,17 +23,19 @@ def get_devices():
     return target_devices
 
 
-def adb_command(device = None):
+def adb_command(device=None):
     args_list = sys.argv[1:]
     args_str = " ".join(args_list)
-    if device == None:
+    if device is None:
         return f"adb {args_str}"
     else:
         return f"adb -s {device} {args_str}"
 
+
 def run_command(command):
-        print(command)
-        subprocess.run(command, shell=True, text=True)
+    print(command)
+    subprocess.run(command, shell=True, text=True)
+
 
 def main():
     if sys.argv[1] in ('devices', 'start-server', 'kill-server', 'help', 'version', '-s', '-a', '-d', '-t'):
