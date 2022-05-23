@@ -1,16 +1,19 @@
 #!/usr/bin/python3 -u
 
-import inquirer
 import subprocess
 import sys
+import inquirer
 
 
 def get_devices():
     if sys.platform == "win32":
         devices = subprocess.check_output(
-            """echo off && for /f "skip=1" %x in ('adb devices') do echo %x""", shell=True, text=True).splitlines()
+            """echo off && for /f "skip=1" %x in ('adb devices') do echo %x""",
+            shell=True,
+            text=True).splitlines()
     else:
-        devices = subprocess.check_output("adb devices | egrep '\t(device|emulator)' | cut -f 1", shell=True,
+        devices = subprocess.check_output("adb devices | egrep '\t(device|emulator)' | cut -f 1",
+                                          shell=True,
                                           text=True).splitlines()
     select_devices = [
         inquirer.Checkbox('devices',
