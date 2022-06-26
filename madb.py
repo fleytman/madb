@@ -2,6 +2,7 @@
 
 import inquirer
 import subprocess
+import argparse
 import sys
 import os
 
@@ -62,11 +63,24 @@ def run_command(command):
 
 
 def main():
-    if sys.argv[1] == "connect" and len(sys.argv) == 2:
+    if len(sys.argv) == 1:
+        print(
+            """usage:
+            1. madb [command ...] (all command how adb)
+            2. choice devices
+            3. enter
+            
+            multiple connect device
+            1. add to your env start with ADB_DEVICE, ex: ```ADB_DEVICE_XIAOMI = 192.168.1.100```
+            2. madb connect
+            3. choice devices
+            4. enter""")
+    elif len(sys.argv) == 2 and sys.argv[1] == "connect":
         for d in get_ip_from_env():
             device, ip = d.split(" = ")
             run_command(adb_connect(ip))
-    elif sys.argv[1] in ('connect', 'devices', 'start-server', 'kill-server', 'help', 'version', '-s', '-a', '-d', '-t'):
+    elif sys.argv[1] in (
+            'connect', 'devices', 'start-server', 'kill-server', 'help', 'version', '-s', '-a', '-d', '-t'):
         run_command(adb_command())
     else:
         for device in get_devices():

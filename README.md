@@ -18,14 +18,14 @@ Multiple choice devices to run adb command
 1. run madb command (all command how adb)
 2. choice devices
 3. enter
+<img width="428" alt="Screenshot 2022-05-16 at 15 22 05" src="https://user-images.githubusercontent.com/1923645/168593673-81241f16-73d4-45f7-a8c5-f6f63855fccf.png">
 
-# multipple connect device
+# multiple connect device
 1. add to your env start with ADB_DEVICE, ex: ```ADB_DEVICE_XIAOMI = 192.168.1.100```
 2. run ```madb connect```
 3. choice devices
 4. enter
 
 
-<img width="428" alt="Screenshot 2022-05-16 at 15 22 05" src="https://user-images.githubusercontent.com/1923645/168593673-81241f16-73d4-45f7-a8c5-f6f63855fccf.png">
 
 
