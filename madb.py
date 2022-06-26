@@ -3,6 +3,7 @@
 import inquirer
 import subprocess
 import sys
+import os
 
 
 def get_devices():
@@ -32,13 +33,40 @@ def adb_command(device=None):
         return f"adb -s {device} {args_str}"
 
 
+def get_ip_from_env():
+    env = os.environ.items()
+    devices_ip = []
+
+    for e, i in env:
+        if e.startswith('ADB_DEVICE'):
+            devices_ip.append(e + " = " + i)
+    print("devices_ip", devices_ip)
+    select_devices = [
+        inquirer.Checkbox('devices',
+                          message="Pls select devices?",
+                          choices=devices_ip,
+                          ),
+    ]
+    answers = inquirer.prompt(select_devices)
+    target_devices = answers['devices']
+    return target_devices
+
+
+def adb_connect(ip):
+    return f"adb connect {ip}"
+
+
 def run_command(command):
     print(command)
     subprocess.run(command, shell=True, text=True)
 
 
 def main():
-    if sys.argv[1] in ('devices', 'start-server', 'kill-server', 'help', 'version', '-s', '-a', '-d', '-t'):
+    if sys.argv[1] == "connect" and len(sys.argv) == 2:
+        for d in get_ip_from_env():
+            device, ip = d.split(" = ")
+            run_command(adb_connect(ip))
+    elif sys.argv[1] in ('connect', 'devices', 'start-server', 'kill-server', 'help', 'version', '-s', '-a', '-d', '-t'):
         run_command(adb_command())
     else:
         for device in get_devices():
