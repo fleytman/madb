@@ -21,6 +21,7 @@ Multiple choice devices to run adb command
 1. run madb command (all command how adb)
 2. choice devices 
 3. enter
+
 <img width="428" alt="Screenshot 2022-05-16 at 15 22 05" src="https://user-images.githubusercontent.com/1923645/168593673-81241f16-73d4-45f7-a8c5-f6f63855fccf.png">
 
 # multiple connect device
@@ -31,14 +32,12 @@ Multiple choice devices to run adb command
 
 
 # How control inquirer checkboxes 
-Move to down position - arrow down or tab
-Move to up position - arrow uo or shift+tab
-Select position - right arrow or space
-Unselect position - left arrow or space
-Select all positions - ctrl+a
-Unselect all positions ctrl+q
-Confirm selected positions - enter
-
- ctrl+a, crtl+q)
+* Move to down position - arrow down or tab
+* Move to up position - arrow uo or shift+tab
+* Select position - right arrow or space
+* Unselect position - left arrow or space
+* Select all positions - ctrl+a
+* Unselect all positions ctrl+q
+* Confirm selected positions - enter
 
 
