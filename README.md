@@ -7,10 +7,10 @@ Multiple choice devices to run adb command
 # install
 1. Install libs ```xargs -L 1 pip3 install < requirements.txt```
 2. Add run permission ```chmod +x madb.py```
-3. Link to bin path, example
+3. Link to bin path, *nix example
         
-        ln -sf madb.py /usr/local/bin/madb
-        ln -sf mscrcpy.py /usr/local/bin/mscrcpy
+        ln -sf "`pwd`/madb.py" /usr/local/bin/madb
+        ln -sf "`pwd`/mscrcpy.py" /usr/local/bin/mscrcpy
 5. To work adb completions add to your ~/.zshrc ```compdef madb=adb``` and run ```. ~/.zshrc``` . If on start zsh see ```command not found``` change in rc file to 
 
         autoload -Uz compinit

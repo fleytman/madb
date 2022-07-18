@@ -33,6 +33,7 @@ def get_devices():
             inquirer.Checkbox('devices',
                               message="Pls select devices?",
                               choices=devices,
+                              carousel=True,
                               ),
         ]
         answers = inquirer.prompt(select_devices)
@@ -71,6 +72,7 @@ def get_ip_from_env():
         inquirer.Checkbox('devices',
                           message="Pls select devices?",
                           choices=devices_ip,
+                          carousel=True,
                           ),
     ]
     answers = inquirer.prompt(select_devices)
@@ -90,7 +92,7 @@ def adb_connect():
             timeout(second)(run_command)((adb_connect_command(ip)))
         except TimeoutError:
             sys.tracebacklimit = 0
-            raise Exception(f"\33[31m\033[1m" +f"Device with {ip} no connected on {second} seconds") from None
+            raise Exception(f"\33[31m\033[1m" + f"Device with {ip} no connected on {second} seconds") from None
 
 
 def run_command(command):
