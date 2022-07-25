@@ -18,6 +18,8 @@ def main():
             4. enter""")
     elif len(sys.argv) == 2 and sys.argv[1] == "connect":
         adb_connect()
+    elif len(sys.argv) > 1 and sys.argv[1] == "install":
+        adb_install()
     elif sys.argv[1] in (
             'connect', 'devices', 'start-server', 'kill-server', 'help', 'version', '-s', '-a', '-d', '-t'):
         run_command(adb_command())
