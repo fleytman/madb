@@ -11,7 +11,7 @@ Multiple choice devices to run adb command
         
         ln -sf "`pwd`/madb.py" /usr/local/bin/madb
         ln -sf "`pwd`/mscrcpy.py" /usr/local/bin/mscrcpy
-5. To work adb completions add to your ~/.zshrc ```compdef '_dispatch adb adb' madb``` and run ```. ~/.zshrc``` . If on start zsh see ```command not found``` change in rc file to 
+4. To work adb completions add to your ~/.zshrc next strings and run ```. ~/.zshrc```
 
         autoload -Uz compinit
         compinit
