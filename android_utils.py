@@ -18,10 +18,10 @@ def get_devices_from_adb():
     return devices
 
 
-def get_devices():
+def get_devices(with_connect=True):
     devices = get_devices_from_adb()
 
-    if len(devices) == 0:
+    if len(devices) == 0 and with_connect:
         print("\nNo connected devices\n")
         adb_connect()
         devices = get_devices_from_adb()
@@ -122,6 +122,8 @@ def select_packages(packages, default_packages=[]):
 def adb_connect_command(ip):
     return f"adb connect {ip}"
 
+def adb_disconnect_command(ip):
+    return f"adb disconnect {ip}"
 
 def adb_connect():
     second = 5
@@ -132,6 +134,15 @@ def adb_connect():
         except TimeoutError:
             sys.tracebacklimit = 0
             raise Exception(f"\33[31m\033[1m" + f"Device with {ip} no connected on {second} seconds") from None
+
+def adb_disconnect():
+    second = 5
+    for ip in get_devices(with_connect=False):
+        try:
+            timeout(second)(run_command)((adb_disconnect_command(ip)))
+        except TimeoutError:
+            sys.tracebacklimit = 0
+            raise Exception(f"\33[31m\033[1m" + f"Device with {ip} no disconnected on {second} seconds") from None
 
 
 def adb_install():
