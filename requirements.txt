@@ -1,5 +1,5 @@
 poetry
 poetry-core
 git+https://github.com/fleytman/python-inquirer.git
-git+https://github.com/fleytman/python-readchar.git@dev-v4
+git+https://github.com/Cube707/python-readchar.git
 wrapt_timeout_decorator
