@@ -122,8 +122,10 @@ def select_packages(packages, default_packages=[]):
 def adb_connect_command(ip):
     return f"adb connect {ip}"
 
+
 def adb_disconnect_command(ip):
     return f"adb disconnect {ip}"
+
 
 def adb_connect():
     second = 5
@@ -132,8 +134,8 @@ def adb_connect():
         try:
             timeout(second)(run_command)((adb_connect_command(ip)))
         except TimeoutError:
-            sys.tracebacklimit = 0
-            raise Exception(f"\33[31m\033[1m" + f"Device with {ip} no connected on {second} seconds") from None
+            print(f"\33[31m\033[1m" + f"Device with {ip} no connected on {second} seconds")
+
 
 def adb_disconnect():
     second = 5
@@ -141,8 +143,7 @@ def adb_disconnect():
         try:
             timeout(second)(run_command)((adb_disconnect_command(ip)))
         except TimeoutError:
-            sys.tracebacklimit = 0
-            raise Exception(f"\33[31m\033[1m" + f"Device with {ip} no disconnected on {second} seconds") from None
+            print(f"\33[31m\033[1m" + f"Device with {ip} no disconnected on {second} seconds")
 
 
 def adb_install():
